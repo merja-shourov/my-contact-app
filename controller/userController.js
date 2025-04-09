@@ -21,11 +21,34 @@ const registerController = async (req, res) => {
   res.status(201).json({ message: "Successfully Created User!" });
 };
 
-const loginController = (req, res) => {
-    const { username, password } = req.body;
+
+
+// login controller 
+const loginController = async (req, res) => {
+  const { username, password } = req.body;
+  const user =await User.findOne({ username });  
     
+  console.log(user.username, user.email);
+  
+  if (user && await bcrypt.compare( password, user.password)) {
+    const token = jwt.sign(
+      { username: user.username, email: user.email },
+      process.env.SECRET,
+      { expiresIn: "1m" }
+    );
+
+    res.json({ token });
+  } else {
+    res.status(404);
+    res.json({ err: "login failed" });
+  }
+
+
   res.status(200).json({ message: "login successful" });
 };
+
+
+//  current controller
 const currentController = (req, res) => {
   res.status(200).json({ message: "current page,,, protect route" });
 };
