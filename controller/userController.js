@@ -50,7 +50,8 @@ const loginController = async (req, res) => {
 
 //  current controller
 const currentController = (req, res) => {
-  res.status(200).json({ message: "Protectet Route... ! Current page" });
+
+  res.status(200).json({ message: "Protectet Route... ! Current page" , username: req.user });
 };
 
 export { loginController, registerController, currentController };

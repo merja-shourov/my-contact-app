@@ -12,6 +12,7 @@ const validateTaken = async (req, res, next)=>{
                 throw new Error("Token Not valid");
             }
             console.log(decode.username);
+            req.user = decode.username;
             next();
         })
     }
