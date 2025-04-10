@@ -34,7 +34,7 @@ const loginController = async (req, res) => {
     const token = jwt.sign(
       { username: user.username, email: user.email },
       process.env.SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "10m" }
     );
 
     res.json({ token });
@@ -50,7 +50,7 @@ const loginController = async (req, res) => {
 
 //  current controller
 const currentController = (req, res) => {
-  res.status(200).json({ message: "current page,,, protect route" });
+  res.status(200).json({ message: "Protectet Route... ! Current page" });
 };
 
 export { loginController, registerController, currentController };
