@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import userRouter from './router/userRouter.js';
 import dbConnection from './db/db.js';
 import 'dotenv/config';
+import contactRouter from './router/contactRouter.js';
 const app = express();
 
 
@@ -14,7 +15,7 @@ app.use(json());
 
 // Route
 app.use("/api/user", userRouter);
-
+app.use("/api/contacts", contactRouter);
 
 
 // App Listening

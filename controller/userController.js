@@ -25,8 +25,9 @@ const registerController = async (req, res) => {
 
 // login controller 
 const loginController = async (req, res) => {
+
   const { username, password } = req.body;
-  const user =await User.findOne({ username });  
+  const user = await User.findOne({ username });  
     
   console.log(user.username, user.email);
   
@@ -37,20 +38,19 @@ const loginController = async (req, res) => {
       { expiresIn: "10m" }
     );
 
+    console.log("login successfull");
+    
+    res.status(200);
     res.json({ token });
   } else {
     res.status(404);
     res.json({ err: "login failed" });
   }
-
-
-  res.status(200).json({ message: "login successful" });
 };
 
 
 //  current controller
 const currentController = (req, res) => {
-
   res.status(200).json({ message: "Protectet Route... ! Current page" , username: req.user });
 };
 

@@ -7,6 +7,6 @@ import validateToken from "../middleware/validateTokenHandlar.js";
 userRouter.post('/registration', registerController);
 userRouter.post('/login', loginController);
 
-userRouter.get('/current', validateToken , currentController );
+userRouter.get('/current', validateToken , currentController);
 
 export default userRouter;
